@@ -2,8 +2,8 @@ const {ItemEntryOfc} = require('../models/associations/modelExports.js');
 
 module.exports = {
   async createEntryOfc(req, res, next){
-    if(req.get('update') == "true") 
-      next();
+    if(typeof req.get('id') != undefined) 
+      return next();
     else{
       const entry_ofc = await ItemEntryOfc.create(req.body);
       return res.json(entry_ofc);
@@ -11,16 +11,9 @@ module.exports = {
   },
 
   async updateEntryOfc(req, res){
-    const entry_ofc_json = {
-      fkItem: req.body.fkItem,
-      fkType: req.body.fkType,
-      fkCliType: req.body.fkCliType,
-      data: req.body.data,
-      desc: req.body.desc
-    }
-    const entry_ofc = await ItemEntryOfc.update(entry_ofc_json, {
+    const entry_ofc = await ItemEntryOfc.update(req.body, {
       where: {
-        pkEntryOfc: req.body.pkEntryOfc
+        id: req.get('id')
       }
     });
     return res.json(entry_ofc);
@@ -28,7 +21,8 @@ module.exports = {
 
   async readEntryOfc(req, res){
     if(typeof req.params.pk == undefined)
-      next('route');
+      return next('route');
+
     else{
       const entry_ofc = await ItemEntryOfc.findByPk(req.body.pk);
       return res.json(entry_ofc);

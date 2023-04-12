@@ -2,8 +2,9 @@ const {ItemLeave} = require('../models/associations/modelExports.js');
 
 module.exports =  {
   async createLeave(req, res, next){
-    if(req.get('update') == "true")
-      next();
+    if(typeof req.get('id') != undefined)
+      return next();
+
     else{
       const leave = ItemLeave.create(req.body);
       return res.json(leave);
@@ -11,15 +12,9 @@ module.exports =  {
   },
 
   async updateLeave(req, res){
-    const leave_json = {
-      fkNfe: req.body.fkNfe,
-      fkCli: req.body.fkCli,
-      fkItem: req.bodyfkItem,
-      data: req.body.data
-    }
-    const leave = await ItemLeave.update(leave_json, {
+    const leave = await ItemLeave.update(req.body, {
       where: {
-        pkLeave: req.body.pkLeave
+        id: req.get('id')
       }
     });
     return res.json(leave);
@@ -28,7 +23,8 @@ module.exports =  {
 
   async readLeave(req, res, next){
     if(typeof req.params.pk == undefined)
-      next();
+      return next();
+
     else{
       const pk = req.body.pk;
       const leave = await ItemLeave.findByPk(pk);

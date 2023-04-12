@@ -16,9 +16,9 @@ module.exports = {
   },
 
   async createItem(req, res, next){
-    console.log('REQ HEADER' + req.get('update'));
-    if(req.get('update') == "true")
+    if(typeof req.get('id') != undefined)
       return next();
+
     else{
       const item_json = req.body;
       const item = await Item.create(item_json)
@@ -27,18 +27,9 @@ module.exports = {
   },
   
   async updateItem(req, res){
-    console.log('UPDATE ITEM');
-    const item_json = {
-      fkCat: req.body.fkCat,
-      fkState: req.body.fkState,
-      serialItem: req.body.serialItem,
-      serialCaixa: req.body.serialCaixa,
-      desc: req.body.desc
-    }
-
-    const item = await Item.update(item_json, {
+    const item = await Item.update(req.body, {
       where: {
-        pkItem: req.body.pkItem
+        id: req.get('id')
       }
     });
 
