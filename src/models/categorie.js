@@ -1,5 +1,9 @@
-import {Model, DataTypes} from 'sequelize'
-import con from '../db/index.js'
+const {
+  Model,
+  DataTypes
+} = require('sequelize');
+
+const con = require('../db/index.js');
 
 class Categorie extends Model {}
 Categorie.init({
@@ -17,4 +21,4 @@ Categorie.init({
   }
 );
 
-export default Categorie;
+module.exports = Categorie;

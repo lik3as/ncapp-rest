@@ -1,6 +1,6 @@
-import {ItemEntry} from '../models/associations/modelExports.js';
+const {ItemEntry} = require('../models/associations/modelExports.js');
 
-export default {
+module.exports = {
   async createEntry(req, res, next){
     if(req.get('update') == "true")
       return next();

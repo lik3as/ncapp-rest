@@ -6,4 +6,4 @@ const db_conf = {
   database: 'nca_stock'
 };
 
-export default db_conf;
+module.exports = db_conf;

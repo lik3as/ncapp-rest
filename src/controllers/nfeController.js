@@ -1,6 +1,6 @@
-import {Nfe} from '../models/associations/modelExports.js';
+const {Nfe} = require('../models/associations/modelExports.js');
 
-export default {
+module.exports =  {
   async createNfe(req, res, next){
     if(req.get('update') == "true")
       next();

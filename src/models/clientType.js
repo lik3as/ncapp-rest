@@ -1,7 +1,11 @@
-import {Model, DataTypes} from 'sequelize';
-import con from '../db/index.js';
+const {
+  Model,
+  DataTypes
+} = require('sequelize');
+const con = require('../db/index.js');
 
-class ClientType extends Model {};
+class ClientType extends Model {}
+;
 ClientType.init({
   pkCliType: {
     type: DataTypes.INTEGER,
@@ -9,12 +13,10 @@ ClientType.init({
     autoIncrement: true
   },
   cliType: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING
   }
 }, {
-    sequelize: con,
-    modelName: 'clientType'
-  }
-);
-
-export default ClientType;
+  sequelize: con,
+  modelName: 'clientType'
+});
+module.exports = ClientType;

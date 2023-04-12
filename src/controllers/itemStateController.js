@@ -1,6 +1,6 @@
-import {ItemState} from '../models/associations/modelExports.js';
+const {ItemState} = require( '../models/associations/modelExports.js');
 
-export default {
+module.exports = {
   async readStates(req, res){
     const states = await ItemState.findAll();
     return res.json(states);
