@@ -1,6 +1,8 @@
-import {Model, DataTypes} from 'sequelize';
-import con from '../db/index.js';
-
+const {
+  Model,
+  DataTypes
+} = require('sequelize');
+const con = require('../db/index.js');
 class ItemEntry extends Model {}
 ItemEntry.init({
   pkItemEntry: {
@@ -12,9 +14,7 @@ ItemEntry.init({
     type: DataTypes.DATE
   }
 }, {
-    sequelize: con,
-    tableName: 'itemEntries'
-  }
-);
-
-export default ItemEntry;
+  sequelize: con,
+  tableName: 'itemEntries'
+});
+module.exports = ItemEntry;

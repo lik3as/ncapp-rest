@@ -1,6 +1,8 @@
-import {Model, DataTypes} from 'sequelize';
-import con from '../db/index.js';
-
+const {
+  Model,
+  DataTypes
+} = require('sequelize');
+const con = require('../db/index.js');
 class Nfe extends Model {}
 Nfe.init({
   pkNfe: {
@@ -9,10 +11,10 @@ Nfe.init({
     autoIncrement: true
   },
   nfe: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING
   },
   cfop: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING
   },
   cpf: {
     type: DataTypes.STRING
@@ -24,9 +26,7 @@ Nfe.init({
     type: DataTypes.STRING
   }
 }, {
-    sequelize: con,
-    tableName: 'nfes'
-  }
-);
-
-export default Nfe;
+  sequelize: con,
+  tableName: 'nfes'
+});
+module.exports = Nfe;

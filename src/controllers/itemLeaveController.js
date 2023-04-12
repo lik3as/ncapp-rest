@@ -1,6 +1,6 @@
-import {ItemLeave} from '../models/associations/modelExports.js';
+const {ItemLeave} = require('../models/associations/modelExports.js');
 
-export default {
+module.exports =  {
   async createLeave(req, res, next){
     if(req.get('update') == "true")
       next();

@@ -1,6 +1,6 @@
-import {Item} from '../models/associations/modelExports.js';
+const {Item} = require('../models/associations/modelExports.js');
 
-export default {
+module.exports = {
   async readItem(req, res, next){
     if(typeof req.params.pk == undefined)
       next('route');

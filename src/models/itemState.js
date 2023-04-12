@@ -1,20 +1,20 @@
-import {Model, DataTypes} from 'sequelize';
-import con from '../db/index.js';
-
+const {
+  Model,
+  DataTypes
+} = require('sequelize');
+const con = require('../db/index.js');
 class ItemState extends Model {}
 ItemState.init({
-  pkItemState:{
+  pkItemState: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
-    primaryKey: true,
+    primaryKey: true
   },
   state: {
     type: DataTypes.STRING
   }
 }, {
-    sequelize: con,
-    tableName: 'itemStates'
-  }
-);
-
-export default ItemState;
+  sequelize: con,
+  tableName: 'itemStates'
+});
+module.exports = ItemState;

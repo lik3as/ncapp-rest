@@ -1,7 +1,7 @@
-import Router from 'express';
-import ctrl from '../controllers/itemStateController.js';
+const Router = require('express');
+const ctrl = require('../controllers/itemStateController.js');
 const router = new Router();
 
 router.get('/states', ctrl.readStates);
 
-export default router;
+module.exports = router;

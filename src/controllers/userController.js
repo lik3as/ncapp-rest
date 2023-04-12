@@ -1,6 +1,6 @@
-import {User} from '../models/associations/modelExports.js';
+const {User} = require( '../models/associations/modelExports.js');
 
-export default {
+module.exports = {
   async createUser(req, res){
     const {nameUser, pswUser} = req.body;
     const user = await User.create({nameUser, pswUser}); 

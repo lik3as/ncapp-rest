@@ -1,11 +1,11 @@
-import {Client} from '../models/associations/modelExports.js';
+const {Client} = require('../models/associations/modelExports.js');
 
 /*
  * findAll em vez de findByPk é dado
  * Em razão da UNIQUE nome
 */
 
-export default {
+module.exports = {
   async readClient(req, res, next){
     if(typeof req.params.name == undefined)
       next('route');

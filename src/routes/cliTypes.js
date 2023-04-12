@@ -1,7 +1,7 @@
-import Router from 'express';
-import ctrl from '../controllers/cliTypeController.js';
+const Router = require('express');
+const ctrl = require('../controllers/cliTypeController.js');
 const router = new Router();
 
 router.get('/ClientTypes', ctrl.getTypes);
 
-export default router;
+module.exports = router;

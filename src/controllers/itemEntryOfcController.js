@@ -1,6 +1,6 @@
-import {ItemEntryOfc} from '../models/associations/modelExports.js';;
+const {ItemEntryOfc} = require('../models/associations/modelExports.js');
 
-export default {
+module.exports = {
   async createEntryOfc(req, res, next){
     if(req.get('update') == "true") 
       next();
