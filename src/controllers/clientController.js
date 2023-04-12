@@ -26,7 +26,7 @@ module.exports = {
   },
   
   async createClient(req, res, next){
-    if(req('update') == "true")
+    if(typeof req.get('id') != undefined)
       return next();
 
     else {
@@ -38,18 +38,9 @@ module.exports = {
   },
 
   async updateClient(req, res){
-    const client_json = {
-      nome : req.body.nome,
-      telefone : req.body.telefone,
-      cep: req.body.cep,
-      uf : req.body.uf,
-      cidade : req.body.cidade,
-      email : req.body.email
-    };
-
-    const client = await Client.update(client_json, {
+    const client = await Client.update(req.body, {
       where: {
-        pkCli: req.body.pkCli
+        id: req('id')
       }
     });
 

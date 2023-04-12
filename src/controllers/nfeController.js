@@ -2,8 +2,9 @@ const {Nfe} = require('../models/associations/modelExports.js');
 
 module.exports =  {
   async createNfe(req, res, next){
-    if(req.get('update') == "true")
-      next();
+    if(typeof req.get('id') != undefined)
+      return next();
+
     else{
       const nfe_json = req.body;
       const nfe = await Nfe.create(nfe_json);
@@ -12,17 +13,9 @@ module.exports =  {
   },
 
   async updateNfe(req, res){
-    const nfe_json = {
-      nfe: req.body.nfe,
-      cfop: req.body.cfop,
-      cpf: req.body.cpf,
-      cnpj: req.body.cnpj,
-      desc: req.body.desc
-    }
-
-    const nfe = await Nfe.update(nfe_json, {
+    const nfe = await Nfe.update(req.body, {
       where: {
-        pkNfe: req.body.pkNfe,
+        id: req.get('id')
       }
     });
     return res.json(nfe);
@@ -30,7 +23,7 @@ module.exports =  {
   
   async readNfe(req, res, next){
     if(req.params.pk == undefined)
-      next('route')
+      return next('route')
     else{
       const pk = req.params.pk;
       const nfe = await Nfe.findByPk(pk);

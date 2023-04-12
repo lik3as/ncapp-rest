@@ -2,8 +2,9 @@ const {ItemEntry} = require('../models/associations/modelExports.js');
 
 module.exports = {
   async createEntry(req, res, next){
-    if(req.get('update') == "true")
+    if(typeof req.get('id') != undefined)
       return next();
+
     else{
       const entry = await ItemEntry.create(req.body);
       return res.json(entry);
@@ -11,14 +12,10 @@ module.exports = {
   },
 
   async updateEntry(req, res){
-    const entry_json = {
-      fkItem: req.body.fkItem,
-      fkNfe: req.body.fkNfe,
-      date: req.body.date
-    }
-    const entry = await ItemEntry.update(entry_json, {
+
+    const entry = await ItemEntry.update(req.body, {
       where: {
-        pkItemEntry: req.body.pkItemEntry
+        id: req.get('id')
       }
     });
     return res.json(entry);
