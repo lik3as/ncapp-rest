@@ -1,26 +1,25 @@
+'use strict';
 const {
-  Model,
-  DataTypes
+  Model
 } = require('sequelize');
-const con = require('../db/index.js');
-class Item extends Model {}
-Item.init({
-  pkItem: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true
-  },
-  serialItem: {
-    type: DataTypes.STRING
-  },
-  serialCaixa: {
-    type: DataTypes.STRING
-  },
-  desc: {
-    type: DataTypes.STRING
+module.exports = (sequelize, DataTypes) => {
+  class Item extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
+    }
   }
-}, {
-  sequelize: con,
-  tableName: 'item'
-});
-module.exports = Item;
+  Item.init({
+    serial: DataTypes.STRING,
+    serial_box: DataTypes.STRING,
+    desc: DataTypes.STRING
+  }, {
+    sequelize,
+    modelName: 'Item',
+  });
+  return Item;
+};

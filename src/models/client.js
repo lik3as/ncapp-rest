@@ -1,36 +1,28 @@
+'use strict';
 const {
-  Model,
-  DataTypes
+  Model
 } = require('sequelize');
-const con = require('../db/index.js');
-class Client extends Model {}
-Client.init({
-  pkCli: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true
-  },
-  nome: {
-    type: DataTypes.STRING
-  },
-  telefone: {
-    type: DataTypes.STRING
-  },
-  uf: {
-    type: DataTypes.STRING
-  },
-  cidade: {
-    type: DataTypes.STRING
-  },
-  cep: {
-    type: DataTypes.STRING
-  },
-  email: {
-    type: DataTypes.STRING,
-    allowNull: true
+module.exports = (sequelize, DataTypes) => {
+  class Client extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
+    }
   }
-}, {
-  sequelize: con,
-  tableName: 'clients'
-});
-module.exports = Client;
+  Client.init({
+    name: DataTypes.STRING,
+    contact: DataTypes.STRING,
+    state: DataTypes.STRING,
+    city: DataTypes.STRING,
+    cep: DataTypes.STRING,
+    email: DataTypes.STRING
+  }, {
+    sequelize,
+    modelName: 'Client',
+  });
+  return Client;
+};
