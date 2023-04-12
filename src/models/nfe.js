@@ -1,32 +1,27 @@
+'use strict';
 const {
-  Model,
-  DataTypes
+  Model
 } = require('sequelize');
-const con = require('../db/index.js');
-class Nfe extends Model {}
-Nfe.init({
-  pkNfe: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true
-  },
-  nfe: {
-    type: DataTypes.STRING
-  },
-  cfop: {
-    type: DataTypes.STRING
-  },
-  cpf: {
-    type: DataTypes.STRING
-  },
-  cnpj: {
-    type: DataTypes.STRING
-  },
-  desc: {
-    type: DataTypes.STRING
+module.exports = (sequelize, DataTypes) => {
+  class Nfe extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
+    }
   }
-}, {
-  sequelize: con,
-  tableName: 'nfes'
-});
-module.exports = Nfe;
+  Nfe.init({
+    num: DataTypes.STRING,
+    cfop: DataTypes.STRING,
+    cpf: DataTypes.STRING,
+    cnpj: DataTypes.STRING,
+    desc: DataTypes.STRING
+  }, {
+    sequelize,
+    modelName: 'Nfe',
+  });
+  return Nfe;
+};
